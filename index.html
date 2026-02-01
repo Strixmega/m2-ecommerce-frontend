@@ -1,76 +1,155 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>m2 ecommerce-frontend</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="./assets/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <script src="https://kit.fontawesome.com/82efd89933.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"><img class="Logotipo" src="./assets/img/javascript.webp" alt="Logotipo javascript"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Producto</a>
-        </li>
-        </ul>
-    </div>
-  </div>
-</nav>
-<header id="header">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html"><img class="logotipo" src="./assets/img/javascript.webp"
+                    alt="Logotipo javascript"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./producto.html">Producto</a>
+                    </li>
+                    <li class="nav-item"><i class="fa-solid fa-cart-arrow-down text-dark"></i> </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header id="header">
         <div>
             <h1 class="text-dark">Aprende con los mejores libros de programación</h1>
-            <p class="text-secondary">Tanto estudiantes como profesionales buscan libros que aborden desde los fundamentos del lenguaje hasta
+            <p class="text-secondary">Tanto estudiantes como profesionales buscan libros que aborden desde los
+                fundamentos del lenguaje hasta
                 frameworks modernos y buenas prácticas, lo que ha diversificado la oferta editorial.</p>
-            <button>Ir a Libros</button>
+            <a href="./producto.html" class="btn btn-warning">Ver productos</a>
         </div>
     </header>
     <main class="container">
         <div class="row p-3">
-            <!--libro 1--> 
-        <section class="col p-2">
-        <div class="card mx-auto" style="width: 18rem;">
-        <img src="./assets/img/Libro1.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">JavaScript Eloquente</h5>
-        <p class="card-text">Este libro trata sobre JavaScript, programación y las maravillas de lo digital. Puedes leerlo en línea aquí o comprar tu copia impresa.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    </div>  
-    </section>
-    <!--libro 2-->
-    <section class="col p-2">
-        <div class="card mx-auto" style="width: 18rem;">
-        <img src="./assets/img/libro2.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">JavaScript la guia definitiva</h5>
-        <p class="card-text">Este libro trata sobre JavaScript, programación y las maravillas de lo digital. Puedes leerlo en línea aquí o comprar tu copia impresa.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    </div>  
-    </section>
-    <!--libro 3-->
-    <section class="col p-2">
-        <div class="card mx-auto" style="width: 18rem;">
-        <img src="./assets/img/libro3.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">Aprendiendo javascript</h5>
-        <p class="card-text">Este libro trata sobre JavaScript, programación y las maravillas de lo digital. Puedes leerlo en línea aquí o comprar tu copia impresa.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    </div>  
-    </section>
-    </div>
-</main>
+            <!--libro 1-->
+            <section class="col-12 col-sm-6 col-md-4 p-2">
+                <div class="card mx-auto">
+                    <img src="./assets/img/Libro1.jpeg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">JavaScript Eloquente</h5>
+                        <p class="card-text">Este libro trata sobre JavaScript, programación y las maravillas de lo
+                            digital. Puedes leerlo en línea aquí o comprar tu copia impresa.</p>
+                        <a href="./producto.html" class="btn btn-primary">Ver producto</a>
+                    </div>
+                </div>
+            </section>
+            <!--libro 2-->
+            <section class="col-12 col-sm-6 col-md-4 p-2">
+                <div class="card mx-auto">
+                    <img src="./assets/img/Libro2.jpeg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">JavaScript la guia definitiva</h5>
+                        <p class="card-text">Este libro trata sobre JavaScript, programación y las maravillas de lo
+                            digital. Puedes leerlo en línea aquí o comprar tu copia impresa.</p>
+                        <a href="./producto.html" class="btn btn-primary">Ver producto</a>
+                    </div>
+                </div>
+            </section>
+            <!--libro 3-->
+            <section class="col-12 col-sm-6 col-md-4 p-2">
+                <div class="card mx-auto">
+                    <img src="./assets/img/Libro3.jpeg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Aprendiendo javascript</h5>
+                        <p class="card-text">Este libro trata sobre JavaScript, programación y las maravillas de lo
+                            digital. Puedes leerlo en línea aquí o comprar tu copia impresa.</p>
+                        <a href="./producto.html" class="btn btn-primary">Ver producto</a>
+                    </div>
+                </div>
+            </section>
+            <!--libro 4-->
+            <section class="col-12 col-sm-6 col-md-4 p-2">
+                <div class="card mx-auto">
+                    <img src="./assets/img/Libro4.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">JAVA LA NOVELA</h5>
+                        <p class="card-text">Este libro trata sobre la historia de Java, programación y las maravillas de lo
+                            digital. Puedes leerlo en línea aquí o comprar tu copia impresa.</p>
+                        <a href="./producto.html" class="btn btn-primary">Ver producto</a>
+                    </div>
+                </div>
+            </section>
+            <!--libro 5-->
+            <section class="col-12 col-sm-6 col-md-4 p-2">
+                <div class="card mx-auto">
+                    <img src="./assets/img/Libro5.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Programación C++ curso de iniciación</h5>
+                        <p class="card-text">Este libro trata sobre lo básico de C++, programación y las maravillas de lo
+                            digital. Puedes leerlo en línea aquí o comprar tu copia impresa.</p>
+                        <a href="./producto.html" class="btn btn-primary">Ver producto</a>
+                    </div>
+                </div>
+            </section>
+            <!--libro 6-->
+            <section class="col-12 col-sm-6 col-md-4 p-2">
+                <div class="card mx-auto">
+                    <img src="./assets/img/Libro6.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Phyton para todos</h5>
+                        <p class="card-text">Este libro trata sobre Phyton, programación y las maravillas de lo
+                            digital. Puedes leerlo en línea aquí o comprar tu copia impresa.</p>
+                        <a href="./producto.html" class="btn btn-primary">Ver producto</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="container py-5">
+        <div class="row py-5 g-3 d-flex align-items-center">
+            <div class="col-md-4">
+            <img class= "logotipo"src="./assets/img/javascript.webp" alt="Logotipo javascript">
+            <h2>
+                Tienda de libros de programación
+            </h2>
+            <p class="text-white">
+            Somos especialistas en libros técnicos de programación.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <form action="/ruta-a-donde-van-los-datos">
+                <label for="email" class="text-white">Suscríbete a nuestro boletín:</label><br>
+                <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico" required>
+                <button type="submit">Suscribirse</button>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <h2>Links</h2>
+            <ul>
+                <li><a href="./index.html">Inicio</a><li>
+
+                </li><a href="./productohtml">Producto<a><li>
+            </ul>
+        </div>
+        </div>
+    </footer>
 </body>
+
 </html>
