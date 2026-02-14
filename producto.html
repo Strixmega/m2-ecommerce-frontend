@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Producto</title>
+    <title>Producto - Tienda de Libros de Programación</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
@@ -30,24 +30,144 @@
                     <li class="nav-item">
                         <a class="nav-link" href="./producto.html">Producto</a>
                     </li>
-                    <li class="nav-item"><i class="fa-solid fa-cart-arrow-down text-dark"></i> </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="btn btn-link text-dark p-0 d-inline d-sm-none me-3" href="./carrito.html" aria-label="Abrir carrito">
+                          <i id="cart-icon" class="fa-solid fa-cart-arrow-down cart-icon"></i>
+                          <span id="cart-count-sm" class="badge bg-danger rounded-pill ms-1">0</span>
+                        </a>
+                    </li>
                 </ul>
+                <span id="userStatus" class="me-3 text-dark"></span>
+                <a id="btn-carrito" class="btn btn-primary position-relative me-2 d-none d-sm-inline-flex align-items-center" href="./carrito.html">
+                  <i class="fa-solid fa-cart-arrow-down me-2"></i>
+                  Carrito <span id="cart-count" class="badge bg-danger ms-2">0</span>
+                </a>
+                <a class="btn btn-primary" href="./index.html">Login</a>
             </div>
         </div>
     </nav>
     <section class="container my-5">
         <div class="row">
             <div class="col-md-6">
-                <img src="./assets/img/Libro1.jpeg" class="img-fluid imagen-producto" alt="Imagen del producto">
+                <img id="product-image" src="" class="img-fluid imagen-producto" alt="Imagen del producto">
             </div>
             <div class="col-md-6">
-                <h2>JavaScript Eloquente</h2>
-                <p class="text-white">Este libro trata sobre JavaScript, programación y las maravillas de lo digital. Puedes leerlo en línea aquí o comprar tu copia impresa.</p>
-                <h4>Precio: $29.99</h4>
-                <button class="btn btn-warning">Agregar al carrito</button>
+                <h2 id="product-title">Producto <span id="product-qty" class="badge bg-secondary ms-2">0</span></h2>
+                <p id="product-desc" class="text-white">Descripción del producto.</p>
+                                <h4 id="product-price">Precio: $0</h4>
+                                <button id="product-add" class="btn btn-warning w-100">Agregar al carrito</button>
+                                <a href="./carrito.html" id="product-view-cart" class="btn btn-outline-primary w-100 mt-2">Ver carrito</a>
+                                <div id="product-nav" class="d-flex gap-2 mt-3 flex-column flex-sm-row">
+                                    <button id="btn-back" class="btn btn-outline-secondary">Volver</button>
+                                    <button id="btn-prev" class="btn btn-outline-primary">Anterior</button>
+                                    <button id="btn-next" class="btn btn-outline-primary">Siguiente</button>
+                                </div>
             </div>
-        </div>
-     <footer class="container py-5">
+                </div>
+                <script src="./assets/js/app.js"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const params = new URLSearchParams(window.location.search);
+                        const id = parseInt(params.get('id'), 10);
+                        const prod = window.catalogo ? window.catalogo.find(p => p.id === id) : null;
+                        const target = document.getElementById('product-title');
+                        const img = document.getElementById('product-image');
+                        const desc = document.getElementById('product-desc');
+                        const price = document.getElementById('product-price');
+                        const btn = document.getElementById('product-add');
+                        const product = prod || (window.catalogo ? window.catalogo[0] : null);
+                                                if(product){
+                                                        target.textContent = product.nombre;
+                                                        img.src = product.imagen || './assets/img/Libro1.jpeg';
+                                                        img.alt = product.nombre;
+                                                        desc.textContent = product.descripcion || '';
+                                                                                                                price.textContent = 'Precio: ' + formatearPrecio(product.precio);
+                                                                                                                const updateQty = () => {
+                                                                                                                    const raw = localStorage.getItem('carrito');
+                                                                                                                    let qty = 0;
+                                                                                                                    if(raw){
+                                                                                                                        try{
+                                                                                                                            const arr = JSON.parse(raw);
+                                                                                                                            const it = arr.find(i => i.id === product.id);
+                                                                                                                            if(it) qty = it.cantidad || 0;
+                                                                                                                        }catch(e){ console.warn('carrito parse error', e); }
+                                                                                                                    }
+                                                                                                                    const qEl = document.getElementById('product-qty');
+                                                                                                                    if(qEl) qEl.textContent = qty;
+                                                                                                                };
+
+                                                                                                                // inicializar cantidad
+                                                                                                                updateQty();
+
+                                                                                                                // Exponer helpers globales (fallback) para asegurar funcionamiento
+                                                                                                                window.updateQty = updateQty;
+
+                                                                                                                btn.onclick = () => {
+                                                                                                                    agregarYRedirigir(product.id);
+                                                                                                                    const toastEl = document.getElementById('addToast');
+                                                                                                                    if(toastEl){
+                                                                                                                        const t = new bootstrap.Toast(toastEl, { delay: 1000 });
+                                                                                                                        t.show();
+                                                                                                                    }
+                                                                                                                    setTimeout(() => { window.location.href = './carrito.html'; }, 1000);
+                                                                                                                };
+
+                                                                                                                // escuchar cambios en otras pestañas
+                                                                                                                window.addEventListener('storage', (e) => {
+                                                                                                                    if(e.key === 'carrito') updateQty();
+                                                                                                                });
+
+                                                        const idx = window.catalogo.findIndex(p => p.id === product.id);
+                                                        const prevBtn = document.getElementById('btn-prev');
+                                                        const nextBtn = document.getElementById('btn-next');
+                                                        const backBtn = document.getElementById('btn-back');
+
+                                                        backBtn.onclick = () => { window.history.back(); };
+
+                                                        if(idx > 0){
+                                                            prevBtn.disabled = false;
+                                                            prevBtn.onclick = () => { window.location.href = `producto.html?id=${window.catalogo[idx-1].id}`; };
+                                                        } else {
+                                                            prevBtn.disabled = true;
+                                                        }
+
+                                                        if(idx < window.catalogo.length - 1){
+                                                            nextBtn.disabled = false;
+                                                            nextBtn.onclick = () => { window.location.href = `producto.html?id=${window.catalogo[idx+1].id}`; };
+                                                        } else {
+                                                            nextBtn.disabled = true;
+                                                        }
+
+                                                        // Navegación por teclado: ← anterior, → siguiente, Esc volver
+                                                        document.addEventListener('keydown', (e) => {
+                                                            const active = document.activeElement;
+                                                            const isInput = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
+                                                            if(isInput) return; // no interferir al escribir
+                                                            if(e.key === 'ArrowLeft' && idx > 0){
+                                                                window.location.href = `producto.html?id=${window.catalogo[idx-1].id}`;
+                                                            }
+                                                            if(e.key === 'ArrowRight' && idx < window.catalogo.length - 1){
+                                                                window.location.href = `producto.html?id=${window.catalogo[idx+1].id}`;
+                                                            }
+                                                            if(e.key === 'Escape'){
+                                                                window.history.back();
+                                                            }
+                                                        });
+                                                }
+                    });
+                </script>
+                                <!-- Toast: agregado al carrito -->
+                                <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+                                    <div id="addToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                                        <div class="d-flex">
+                                            <div class="toast-body">
+                                                Producto agregado al carrito
+                                            </div>
+                                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+                                        </div>
+                                    </div>
+                                </div>
+         <footer class="container py-5">
         <div class="row py-5 g-3 d-flex align-items-center">
             <div class="col-md-4">
             <img class= "logotipo"src="./assets/img/javascript.webp" alt="Logotipo javascript">
@@ -62,15 +182,14 @@
             <form action="/ruta-a-donde-van-los-datos">
                 <label for="email" class="text-white">Suscríbete a nuestro boletín:</label><br>
                 <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico" required>
-                <a class="btn btn-warning" href="./checkout.html">Agregar al carrito</a>
+                <button class="btn btn-warning mt-2" type="submit">Suscribirse</button>
             </form>
         </div>
         <div class="col-md-4">
-            <h2>Links</h2>
+                <h2>Links</h2>
             <ul>
-                <li><a class="text-warning"href="./index.html">Inicio</a><li>
-
-                </li><a class="text-warning"href="./productohtml">Producto<a><li>
+                <li><a class="text-warning" href="./index.html">Inicio</a></li>
+                <li><a class="text-warning" href="./producto.html">Producto</a></li>
             </ul>
         </div>
         </div>

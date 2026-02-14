@@ -44,10 +44,87 @@ li{
 }
 a{
     text-decoration: none;
-    color: var(--color-primary)
+    color: var(--color-primary);
 }
 @media  (min-width: 768px){
 .imagen-producto{
    height: 500px;
 }
+}
+
+/* Carrito responsive */
+.cart-icon{
+    font-size: 1.4rem;
+}
+
+@media (min-width: 576px){
+    .cart-icon{ font-size: 1rem; }
+}
+
+/* Small badge adjustment */
+#cart-count-sm{
+    font-size: 0.7rem;
+    vertical-align: top;
+}
+
+/* Efecto hover en tarjetas e imágenes de productos */
+.card{
+    transition: transform .25s ease, box-shadow .25s ease;
+    will-change: transform;
+}
+.card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+.card:active{
+    transform: translateY(2px) scale(.99);
+}
+.card-img-top{
+    transition: transform .35s ease;
+    backface-visibility: hidden;
+}
+.card:hover .card-img-top{
+    transform: scale(1.06);
+}
+
+@media (max-width: 576px){
+    .card:hover{ transform: none; box-shadow: none; }
+    .card-img-top{ transform: none !important; }
+    .card:active{ transform: translateY(2px) scale(.98); }
+}
+
+/* Microinteracciones para botones */
+.btn{
+    transition: transform .15s ease, box-shadow .15s ease, opacity .12s ease;
+    will-change: transform;
+}
+.btn:hover{
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+.btn:active{
+    transform: translateY(1px) scale(.98);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+.btn:focus{
+    outline: 3px solid rgba(255,255,255,0.12);
+    outline-offset: 2px;
+}
+
+/* Variantes más sutiles para botones de tamaño pequeño */
+.btn-sm{
+    transition-duration: .12s;
+}
+
+@media (max-width: 576px){
+    /* Menos efecto en dispositivos táctiles para evitar jitter */
+    .btn:hover{ transform: none; box-shadow: none; }
+    .btn:active{ transform: translateY(1px) scale(.995); }
+}
+
+/* Animación para desaparecer elementos (vaciar carrito) */
+.fade-out{
+    opacity: 0 !important;
+    transform: translateY(8px) scale(.98) !important;
+    transition: opacity .38s ease, transform .38s ease;
 }
